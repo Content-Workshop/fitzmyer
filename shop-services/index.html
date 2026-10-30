@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap">
 <style>
-  /* Layout: Anchor's section order (intro + quote → core services → shop grid → brand band → why us → quote + area),
+  /* Layout: Anchor's section order (intro + quote → core services → inside our shop → brand band → why us → quote + area),
      dressed in Phoenix's style (condensed caps headings, outlined detail buttons, white cards on a pale band). */
   :root {
     /* Fitzmyer Elementor Global Colors + Typography */
@@ -109,21 +109,19 @@
   .svc h3 { font-size: 19px; color: var(--navy); font-weight: 600; }
   .svc p { color: var(--muted); font-size: 16px; flex: 1; }
 
-  /* Shop by pump type */
-  .shop-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
-  .chip { font: 500 13px var(--font-display); border: 1px solid var(--line); background: var(--white); color: var(--navy); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
-  .chip[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  .type { border: 1px solid var(--line); background: var(--white); display: flex; flex-direction: column; min-width: 0; transition: box-shadow .15s, transform .15s; }
-  .type:hover { box-shadow: 0 10px 24px rgba(1,44,100,.12); transform: translateY(-2px); }
-  .type .ph { aspect-ratio: 4 / 3; border-width: 0 0 2px; }
-  .type-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .type h3 { font-size: 17px; color: var(--navy); font-weight: 600; }
-  .type p { font-size: 15px; color: var(--muted); flex: 1; }
-  .brands { font-size: 13px; color: var(--ink); }
-  .brands b { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 2px; }
-  .type-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .shop-foot { text-align: center; margin-top: 32px; }
+  /* Inside our shop (Anchor's shop gallery + capabilities list) */
+  .inshop { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: center; }
+  .inshop > * { min-width: 0; }
+  .inshop h2 { font-size: clamp(26px, 3.6vw, 38px); color: var(--navy); font-weight: 700; }
+  .inshop > div > p { margin-top: 16px; color: var(--muted); }
+  .inshop h3 { font-size: 15px; color: var(--navy); text-transform: uppercase; letter-spacing: .06em; margin-top: 26px; }
+  .caps { list-style: none; padding: 0; margin: 12px 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+  .caps li { position: relative; padding-left: 22px; font-weight: 500; font-size: 15px; }
+  .caps li::before { content: ""; position: absolute; left: 0; top: .45em; width: 10px; height: 10px; background: var(--blue); }
+  .caps li.tbd { grid-column: 1 / -1; color: var(--muted); font-style: italic; font-weight: 400; }
+  .caps li.tbd::before { background: none; border: 2px dashed var(--blue); width: 6px; height: 6px; }
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .gallery .ph { aspect-ratio: 4 / 3; }
 
   /* Brand band (Anchor's "Peerless" band) */
   .brandband { background: var(--navy); color: #fff; }
@@ -176,7 +174,7 @@
 
   /* Responsive */
   @media (max-width: 1040px) {
-    .services, .types, .logos { grid-template-columns: repeat(2, 1fr); }
+    .services, .logos { grid-template-columns: repeat(2, 1fr); }
     .why { grid-template-columns: 1fr; }
   }
   @media (max-width: 1100px) {
@@ -188,12 +186,12 @@
   }
   @media (max-width: 860px) {
     header.site .btn-cta { display: none; }
-    .intro, .closing { grid-template-columns: 1fr; }
+    .intro, .closing, .inshop { grid-template-columns: 1fr; }
     footer .wrap { grid-template-columns: 1fr; }
     .topbar .wrap { justify-content: flex-start; }
   }
   @media (max-width: 520px) {
-    .services, .types { grid-template-columns: 1fr; }
+    .services, .caps { grid-template-columns: 1fr; }
     form { grid-template-columns: 1fr; }
     section { padding-block: 52px; }
     .wordmark .lg { font-size: 26px; }
@@ -237,9 +235,9 @@
   <div class="ph" aria-hidden="true">REPLACE: repair shop photo, 1920×700</div>
   <div class="wrap">
     <h1>Shop &amp; Services</h1>
-    <p>Pumps, parts, repair, and custom assembly from one East Coast distributor</p>
+    <p>Pump repair, parts, and custom assembly from our Greater Philadelphia shop</p>
     <div class="actions">
-      <a href="#shop" class="btn btn-cta">Shop Pumps</a>
+      <a href="#shop" class="btn btn-cta">See Our Shop</a>
       <a href="#quote" class="btn btn-ghost">Request a Repair Quote</a>
     </div>
   </div>
@@ -281,7 +279,7 @@
         <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="22" width="30" height="22" rx="2"/><path d="M38 28h10l8 8v8H38M16 44v6M30 44v6M8 32h30"/><circle cx="46" cy="48" r="4"/><circle cx="18" cy="52" r="0.5"/></svg>
         <h3>New Pump Sales</h3>
         <p>Centrifugal, self-priming, positive displacement, and air-operated pumps from the best brands in the industry, with expert help choosing the right fit.</p>
-        <a href="#shop" class="btn btn-line">Shop Pumps →</a>
+        <a href="https://www.fitzmyer.com/pump-types/" class="btn btn-line">View Pump Types →</a>
       </article>
       <article class="svc">
         <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 50h44M14 50V30h12v20M26 38h12v12M38 22h12v28M20 30V18M44 22V10"/><circle cx="20" cy="15" r="3"/><circle cx="44" cy="8" r="2"/></svg>
@@ -294,93 +292,29 @@
 </section>
 
 <section id="shop">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Shop</p>
-      <h2>Shop by Pump Type</h2>
-      <p>Browse the pumps we stock and source, then request a quote. Our team will confirm sizing, availability, and delivery.</p>
+  <div class="wrap inshop">
+    <div>
+      <p class="eyebrow">Our Shop</p>
+      <h2>Inside Our Repair Shop</h2>
+      <p>Our Greater Philadelphia repair shop takes in damaged pumps and faulty components. We diagnose the problem, then repair or replace what's needed to get your pump system running again.</p>
+      <h3>What our shop handles</h3>
+      <ul class="caps">
+        <li>Diagnosis and troubleshooting</li>
+        <li>Major and minor component repair</li>
+        <li>Impeller and inlet valve repair</li>
+        <li>Pressure switch replacement</li>
+        <li>Custom pump assembly fabrication</li>
+        <li>Replacement parts for the brands we carry</li>
+        <li class="tbd">Confirm with client: shop equipment, lifting capacity, testing</li>
+      </ul>
+      <a href="#quote" class="btn btn-cta">Request a Repair Quote</a>
     </div>
-    <div class="shop-tools" role="group" aria-label="Filter pump types">
-      <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-      <button class="chip" type="button" data-filter="transfer" aria-pressed="false">Transfer</button>
-      <button class="chip" type="button" data-filter="process" aria-pressed="false">Process &amp; Chemical</button>
-      <button class="chip" type="button" data-filter="water" aria-pressed="false">Water &amp; Wastewater</button>
+    <div class="gallery">
+      <div class="ph">Shop photo<small>Full shop floor</small></div>
+      <div class="ph">Shop photo<small>Pump teardown</small></div>
+      <div class="ph">Shop photo<small>Technician at work</small></div>
+      <div class="ph">Shop photo<small>Finished repair, ready to ship</small></div>
     </div>
-    <div class="types" id="types">
-      <article class="type" data-tags="transfer process">
-        <div class="ph">Product photo<small>Deming end suction</small></div>
-        <div class="type-body">
-          <h3>Centrifugal Pumps</h3>
-          <p>The most common pump for fluid transfer. Sealed, vertical, and heat transfer models for corrosive and non-corrosive fluids.</p>
-          <div class="brands"><b>Brands</b>Dean Pump · Deming · Finish-Thompson</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="transfer process">
-        <div class="ph">Product photo<small>ARO AODD</small></div>
-        <div class="type-body">
-          <h3>Air Diaphragm Pumps</h3>
-          <p>Air-powered and safe for volatile environments. Handles abrasive, viscous, and corrosive fluids.</p>
-          <div class="brands"><b>Brands</b>Ingersoll Rand/ARO · Ramparts · Warren Rupp</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="water">
-        <div class="ph">Product photo<small>Roth 350</small></div>
-        <div class="type-body">
-          <h3>Condensate Pumps</h3>
-          <p>Return condensate to your steam system for reuse, or remove it altogether, to keep steam systems efficient.</p>
-          <div class="brands"><b>Brands</b>Domestic · Hoffman · Roth · Weinman</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="transfer">
-        <div class="ph">Product photo<small>AMT rotary drum</small></div>
-        <div class="type-body">
-          <h3>Drum Pumps</h3>
-          <p>Transfer fluids from drums and barrels safely, with less spillage, waste, and manual handling.</p>
-          <div class="brands"><b>Brands</b>AMT · Blackmer · Finish-Thompson · Ingersoll Rand/ARO · Lutz</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="process">
-        <div class="ph">Product photo<small>ARO 2:1 ratio</small></div>
-        <div class="type-body">
-          <h3>High-Pressure Pumps</h3>
-          <p>High flow at high pressure for water jet cutting, cleaning, hydraulic power, and boiler feed.</p>
-          <div class="brands"><b>Brands</b>Ingersoll Rand/ARO · Wanner Hydra-Cell</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="process water">
-        <div class="ph">Product photo<small>Neptune 500-A</small></div>
-        <div class="type-body">
-          <h3>Metering Pumps</h3>
-          <p>Precise dosing for water treatment, chemical processing, and food production.</p>
-          <div class="brands"><b>Brands</b>GRI · Neptune Chemical · Wanner Hydra-Cell</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="process">
-        <div class="ph">Product photo<small>Griswold 811 ANSI</small></div>
-        <div class="type-body">
-          <h3>Process Pumps</h3>
-          <p>Built to industry specifications for aggressive chemical fluids, and customizable to your application.</p>
-          <div class="brands"><b>Brands</b>Crane-Deming · Dean · Finish-Thompson · Griswold</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-      <article class="type" data-tags="water">
-        <div class="ph">Product photo<small>BJM submersible</small></div>
-        <div class="type-body">
-          <h3>Submersible &amp; Sump Pumps</h3>
-          <p>Rugged submersible, sump, sewage, and grinder pumps for construction, mining, and wastewater.</p>
-          <div class="brands"><b>Brands</b>BJM · Crane Pumps &amp; Systems · Zoeller</div>
-          <div class="type-actions"><a href="#quote" class="btn btn-line">Request a Quote</a></div>
-        </div>
-      </article>
-    </div>
-    <div class="shop-foot"><a href="https://www.fitzmyer.com/pump-types/" class="btn btn-line">See All Pump Types →</a></div>
   </div>
 </section>
 
@@ -412,14 +346,8 @@
     </div>
     <div class="why">
       <article>
-        <h3>Repair &amp; Service Shop</h3>
-        <p>Damaged pumps or parts that aren't working as efficiently as they should? Our shop repairs or replaces faulty components to keep production moving.</p>
-        <ul>
-          <li>Clogged inlet valves</li>
-          <li>Damaged impellers</li>
-          <li>Faulty pressure switches</li>
-          <li>Major and minor component repair</li>
-        </ul>
+        <h3>Nationwide Shipping</h3>
+        <p>We serve PA, DE, MD, and NJ from the Greater Philadelphia area, and we ship pumps and parts anywhere in the country.</p>
       </article>
       <article>
         <h3>A Reputation That Precedes Us</h3>
@@ -504,15 +432,6 @@
     const open = nav.classList.toggle('open');
     toggle.setAttribute('aria-expanded', open);
   });
-
-  // Pump type filter
-  const chips = document.querySelectorAll('.chip');
-  const cards = document.querySelectorAll('#types .type');
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    chips.forEach(c => c.setAttribute('aria-pressed', c === chip));
-    const f = chip.dataset.filter;
-    cards.forEach(card => { card.hidden = f !== 'all' && !card.dataset.tags.split(' ').includes(f); });
-  }));
 
   // Mockup form: no real submission
   const form = document.getElementById('quote-form');
